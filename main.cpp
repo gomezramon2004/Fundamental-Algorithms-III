@@ -9,6 +9,7 @@ int main (){
     caseTree1.insert(7);
     caseTree1.insert(4);
 
+    //sirve
 
     std::cout << "Preorder: " << std::endl;
     caseTree1.visit(1);
