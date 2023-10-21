@@ -39,4 +39,7 @@ class BST {
         int height();
         void ancestors(int data);
         int whatlevelamI(int data);
+        void printOrderedVector();
 };
+
+int compareVector(std::vector <int> vector);
