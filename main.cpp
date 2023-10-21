@@ -5,9 +5,8 @@
 
 int main() {
     try {
-        // Binary Search Tree Basic Structure - For the testcases
         
-        // Case #1
+        // Case #0 - Check which travel method gives the smallest number of comparisons
         BST bstMain1(5);
         bstMain1.insertNode(20);
         bstMain1.insertNode(5);
