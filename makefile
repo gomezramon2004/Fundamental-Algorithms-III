@@ -4,10 +4,12 @@ TARGET = main
 BSTDIR = bst
 TSTDIR = testcase
 UIDIR = interface
+LNKDIR = linkList
 
 SRCS = main.cpp \
 		$(BSTDIR)/bst.cpp \
 		$(TSTDIR)/testcase.cpp \
+		$(LNKDIR)/linkList.cpp \
 		$(UIDIR)/interface.cpp \
 
 EXECUTABLE = a.out
