@@ -148,7 +148,7 @@ void BST::levelByLevel(Node* currentNode) {
 }
 
 // Constructor of BST
-BST::BST(int LENGTH) : currentLength(0), root(nullptr), MAX_LENGTH(LENGTH) {}
+BST::BST(int LENGTH) : MAX_LENGTH(LENGTH), currentLength(0), root(nullptr) {}
 
 // Insert node to BST
 void BST::insertNode(int data) {  
@@ -157,7 +157,7 @@ void BST::insertNode(int data) {
     if (currentLength == MAX_LENGTH) {
         throw std::runtime_error("ERROR: BST is full");
     }
-            
+
     if (empty()) {
         root = newNode;
     } else {

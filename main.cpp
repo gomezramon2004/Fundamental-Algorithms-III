@@ -8,7 +8,7 @@ int main() {
         // Binary Search Tree Basic Structure - For the testcases
         
         // Case #1
-        BST bstMain1;
+        BST bstMain1(5);
         bstMain1.insertNode(20);
         bstMain1.insertNode(5);
         bstMain1.insertNode(8);
