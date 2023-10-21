@@ -4,7 +4,7 @@ class Node {
     public:
         int data;
         Node *next;
-        Node (int data);
+        Node(int data);
 };
 
 class LinkedList {
@@ -13,5 +13,6 @@ class LinkedList {
     public:
         LinkedList();
         void insertNode(int data);
+        Node* getHead();
         void clear();
 };

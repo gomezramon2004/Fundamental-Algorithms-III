@@ -5,9 +5,19 @@ Node::Node(int data) : data(data), next(nullptr) {}
 LinkedList::LinkedList() : head(nullptr) {}
 
 void LinkedList::insertNode(int data) {
-    Node *newNode = new Node(data);
-    newNode->next = head;
-    head = newNode;
+    if (!head) {
+        head = new Node(data);
+    } else {
+        Node *currentNode = head;
+        while (currentNode->next) {
+            currentNode = currentNode->next;
+        }
+        currentNode->next = new Node(data);
+    }
+}
+
+Node* LinkedList::getHead() {
+    return head;
 }
 
 void LinkedList::clear() {
