@@ -15,17 +15,21 @@ int main() {
         bstMain1.insertNode(7);
         bstMain1.insertNode(4);
 
-        std::cout << "Preorder: " << std::endl;
+        std::cout << "Preorder: " << '\n';
         bstMain1.visit(1);
+        std::cout << "Comparaciones: " << compare(bstMain1.getComparisonVector()) << '\n';
 
-        std::cout << "Inorder: " << std::endl;
+        std::cout << "Inorder: " << '\n';
         bstMain1.visit(2);
+        std::cout << "Comparaciones: " << compare(bstMain1.getComparisonVector()) << '\n';
 
-        std::cout << "Postorder: " << std::endl;
+        std::cout << "Postorder: " << '\n';
         bstMain1.visit(3);
+        std::cout << "Comparaciones: " << compare(bstMain1.getComparisonVector()) << '\n';
 
-        std::cout << "Level by Level: " << std::endl;
+        std::cout << "Level by Level: " << '\n';
         bstMain1.visit(4);
+        std::cout << "Comparaciones: " << compare(bstMain1.getComparisonVector()) << '\n';
 
 
     } catch (const std::runtime_error &e) {

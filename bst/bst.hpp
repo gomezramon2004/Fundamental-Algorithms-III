@@ -16,6 +16,7 @@ class BST {
         int MAX_LENGTH;
         int currentLength;
         int currentHeight;
+        std::vector<int> comparisonVector;
         Node* root;
         void compareNodes(Node* currentNode, Node* newNode);
         Node* searchNode(int data, Node* currentNode, bool isLevel);
@@ -41,4 +42,7 @@ class BST {
         int height();
         void ancestors(int data);
         int whatlevelamI(int data);
+        std::vector<int> getComparisonVector();
 };
+
+int compare(std::vector <int>&& vector);

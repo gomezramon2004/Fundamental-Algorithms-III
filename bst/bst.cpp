@@ -2,6 +2,7 @@
 #include <algorithm> 
 #include <iostream>
 #include <queue>
+#include <vector>
 
 // Constructor of Node
 Node::Node(int data) : data(data), level(0), left(nullptr), right(nullptr), prev(nullptr) {}
@@ -108,6 +109,7 @@ int BST::calculateHeight(Node* currentNode) {
 // Helper function for preorder
 void BST::preorder(Node* currentNode) {
     if (!currentNode) return;
+    comparisonVector.push_back(currentNode->data);
     std::cout << currentNode->data << " ";
     preorder(currentNode->left);
     preorder(currentNode->right);
@@ -117,6 +119,7 @@ void BST::preorder(Node* currentNode) {
 void BST::inorder(Node* currentNode) {
     if (!currentNode) return;
     inorder(currentNode->left);
+    comparisonVector.push_back(currentNode->data);
     std::cout << currentNode->data << " ";
     inorder(currentNode->right);
 }
@@ -126,6 +129,7 @@ void BST::postorder(Node* currentNode) {
     if (!currentNode) return;
     postorder(currentNode->left);
     postorder(currentNode->right);
+    comparisonVector.push_back(currentNode->data);
     std::cout << currentNode->data << " ";
 }
 
@@ -139,6 +143,7 @@ void BST::levelByLevel(Node* currentNode) {
         for (size_t i = 0; i < n; ++i) {
             Node* temp = q.front();
             q.pop();
+            comparisonVector.push_back(temp->data);
             std::cout << temp->data << " ";
             if (temp->left) q.push(temp->left);
             if (temp->right) q.push(temp->right);
@@ -154,9 +159,7 @@ BST::BST(int LENGTH) : MAX_LENGTH(LENGTH), currentLength(0), root(nullptr) {}
 void BST::insertNode(int data) {  
     Node* newNode = new Node(data);      
 
-    if (currentLength == MAX_LENGTH) {
-        throw std::runtime_error("ERROR: BST is full");
-    }
+    if (currentLength == MAX_LENGTH) throw std::runtime_error("ERROR: BST is full");
 
     if (empty()) {
         root = newNode;
@@ -169,9 +172,7 @@ void BST::insertNode(int data) {
 
 // Delete node to BST
 void BST::deleteNode(int data) {      
-    if (empty()) {
-        throw std::runtime_error("ERROR: BST is empty");
-    }
+    if (empty()) throw std::runtime_error("ERROR: BST is empty");
 
     Node* currentNode = searchNode(data, root, false);
 
@@ -209,6 +210,7 @@ int BST::size() {
 
 // Visit a node by certain mode
 void BST::visit(int key) {
+    if (empty()) throw std::runtime_error("ERROR: BST is empty");
     switch (key) {
         case 1:
             preorder(root);
@@ -249,4 +251,21 @@ void BST::ancestors(int data) {
 int BST::whatlevelamI(int data) {
     Node* currentNode = searchNode(data, root, true);
     return currentNode->level;
+}
+
+// Get comparison vector
+std::vector<int> BST::getComparisonVector() {
+    return comparisonVector;
+}
+
+int compare(std::vector<int>&& vectorData) {
+    int resultadoTotal = 0, resultado, counter = 2;
+    resultado = vectorData[0] + vectorData[1] - 1;
+    while (counter<=vectorData.size()) {
+        resultadoTotal = resultadoTotal + resultado;
+        resultado = resultado + vectorData[counter] -1;
+        ++counter;
+    }
+    vectorData.clear();
+    return resultadoTotal;
 }
