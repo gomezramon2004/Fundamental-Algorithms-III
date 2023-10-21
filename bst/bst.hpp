@@ -15,6 +15,7 @@ class BST {
         int currentLength;
         int currentHeight;
         Node* root;
+        std::vector<int> orderedVector;
         void compareNodes(Node* currentNode, Node* newNode);
         Node* searchNode(int data, Node* currentNode, bool isLevel);
         void deleteLeaftNode(Node* currentNode);

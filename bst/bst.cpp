@@ -246,13 +246,12 @@ int BST::whatlevelamI(int data) {
     return currentNode->level;
 }
 
-void BinaryTree::printOrderedVector() {
+void BST::printOrderedVector() {
     for (int i = 0; i < orderedVector.size(); i++) {
         std::cout << orderedVector[i] << " ";
     }
     std::cout << std::endl;
 }
-
 
 int compareVector(std::vector <int> vector) {
     int resultadoTotal = 0, resultado, counter = 2;
