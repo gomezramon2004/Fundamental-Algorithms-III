@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 
 class Node {
     public:
@@ -12,10 +13,10 @@ class Node {
 
 class BST {
     private:
+        int MAX_LENGTH;
         int currentLength;
         int currentHeight;
         Node* root;
-        std::vector<int> orderedVector;
         void compareNodes(Node* currentNode, Node* newNode);
         Node* searchNode(int data, Node* currentNode, bool isLevel);
         void deleteLeaftNode(Node* currentNode);
@@ -29,7 +30,7 @@ class BST {
         void postorder(Node* currentNode);
         void levelByLevel(Node* currentNode);
     public:
-        BST();
+        BST(int LENGTH);
         void insertNode(int data);
         void deleteNode(int data);
         bool search(int data);
@@ -40,7 +41,4 @@ class BST {
         int height();
         void ancestors(int data);
         int whatlevelamI(int data);
-        void printOrderedVector();
 };
-
-int compareVector(std::vector <int> vector);

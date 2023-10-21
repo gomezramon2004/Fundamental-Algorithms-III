@@ -6,52 +6,27 @@
 int main() {
     try {
         // Binary Search Tree Basic Structure - For the testcases
-
-        BST bst;
-        addNodes(bst);
-
-        // Visit Testcases
-
-        bst.visit(1);   // First Case
-        bst.visit(2);   // Second Case
-        bst.visit(3);   // Third Case
-        bst.visit(4);   // Four Case
-
-        // Height Testcases
-
-        std::cout << bst.height() << std::endl;     // First Case
-        bst.insertNode(1);                          // Second Case
-        std::cout << bst.height() << std::endl;
-        bst.deleteNode(1), bst.deleteNode(10), bst.deleteNode(18), bst.deleteNode(25), bst.deleteNode(40);      // Third Case
-        std::cout << bst.height() << std::endl;
-        bst.deleteNode(13), bst.deleteNode(33);     // Fourth Case
-        std::cout << bst.height() << std::endl;
-
-        // Ancestors Testcases
-        bst.deleteNode(21);
-        addNodes(bst);
-        bst.ancestors(10);      // First Case
-        bst.ancestors(18);      // Second Case
-        bst.ancestors(25);      // Third Case
-        bst.ancestors(40);      // Fourth Case
-
-        // What level am I Testcases
-        bst.insertNode(1); 
-        std::cout << bst.whatlevelamI(21) << std::endl; // First Case
-        std::cout << bst.whatlevelamI(13) << std::endl;  // Second Case
-        std::cout << bst.whatlevelamI(10) << std::endl;  // Third Case
-        std::cout << bst.whatlevelamI(1) << std::endl;  // Fourth Case
         
-        // Main Case
-        BST bstMain;
-        bstMain.insertNode(20);
-        bstMain.insertNode(5);
-        bstMain.insertNode(8);
-        bstMain.insertNode(7);
-        bstMain.insertNode(4);
+        // Case #1
+        BST bstMain1;
+        bstMain1.insertNode(20);
+        bstMain1.insertNode(5);
+        bstMain1.insertNode(8);
+        bstMain1.insertNode(7);
+        bstMain1.insertNode(4);
 
         std::cout << "Preorder: " << std::endl;
-        bstMain.visit(1);
+        bstMain1.visit(1);
+
+        std::cout << "Inorder: " << std::endl;
+        bstMain1.visit(2);
+
+        std::cout << "Postorder: " << std::endl;
+        bstMain1.visit(3);
+
+        std::cout << "Level by Level: " << std::endl;
+        bstMain1.visit(4);
+
 
     } catch (const std::runtime_error &e) {
         std::cerr << e.what() << std::endl;

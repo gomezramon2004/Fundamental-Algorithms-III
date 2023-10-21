@@ -148,11 +148,16 @@ void BST::levelByLevel(Node* currentNode) {
 }
 
 // Constructor of BST
-BST::BST() : currentLength(0), root(nullptr) {}
+BST::BST(int LENGTH) : currentLength(0), root(nullptr), MAX_LENGTH(LENGTH) {}
 
 // Insert node to BST
 void BST::insertNode(int data) {  
-    Node* newNode = new Node(data);                   
+    Node* newNode = new Node(data);      
+
+    if (currentLength == MAX_LENGTH) {
+        throw std::runtime_error("ERROR: BST is full");
+    }
+            
     if (empty()) {
         root = newNode;
     } else {
@@ -244,22 +249,4 @@ void BST::ancestors(int data) {
 int BST::whatlevelamI(int data) {
     Node* currentNode = searchNode(data, root, true);
     return currentNode->level;
-}
-
-void BST::printOrderedVector() {
-    for (int i = 0; i < orderedVector.size(); i++) {
-        std::cout << orderedVector[i] << " ";
-    }
-    std::cout << std::endl;
-}
-
-int compareVector(std::vector <int> vector) {
-    int resultadoTotal = 0, resultado, counter = 2;
-    resultado = vector[0] + vector[1] - 1;
-    while (counter<=vector.size()) {
-        resultadoTotal = resultadoTotal + resultado;
-        resultado = resultado + vector[counter] -1;
-        counter++;
-    }
-    return resultadoTotal;
 }
