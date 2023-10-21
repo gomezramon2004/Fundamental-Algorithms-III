@@ -16,19 +16,21 @@ int main() {
 
         std::cout << "Preorder: " << '\n';
         bstMain1.visit(1);
-        std::cout << "Comparaciones: " << compare(bstMain1.getComparisonVector()) << '\n';
+        std::cout << "Comparisons: " << compare(bstMain1.getComparisonVector()) << '\n'; // It should be 125
 
         std::cout << "Inorder: " << '\n';
         bstMain1.visit(2);
-        std::cout << "Comparaciones: " << compare(bstMain1.getComparisonVector()) << '\n';
+        std::cout << "Comparisons: " << compare(bstMain1.getComparisonVector()) << '\n'; // It should be 83 <- This is the smallest number of comparisons
 
         std::cout << "Postorder: " << '\n';
         bstMain1.visit(3);
-        std::cout << "Comparaciones: " << compare(bstMain1.getComparisonVector()) << '\n';
+        std::cout << "Comparisons: " << compare(bstMain1.getComparisonVector()) << '\n'; // It should be 88
 
         std::cout << "Level by Level: " << '\n';
         bstMain1.visit(4);
-        std::cout << "Comparaciones: " << compare(bstMain1.getComparisonVector()) << '\n';
+        std::cout << "Comparisons: " << compare(bstMain1.getComparisonVector()) << '\n'; // It should be 125
+
+        
 
 
     } catch (const std::runtime_error &e) {
