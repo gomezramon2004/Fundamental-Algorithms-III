@@ -245,3 +245,14 @@ int BST::whatlevelamI(int data) {
     Node* currentNode = searchNode(data, root, true);
     return currentNode->level;
 }
+
+int compareVector(std::vector <int> vector) {
+    int resultadoTotal = 0, resultado, counter = 2;
+    resultado = vector[0] + vector[1] - 1;
+    while (counter<=vector.size()) {
+        resultadoTotal = resultadoTotal + resultado;
+        resultado = resultado + vector[counter] -1;
+        counter++;
+    }
+    return resultadoTotal;
+}
