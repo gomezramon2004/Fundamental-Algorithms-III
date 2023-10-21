@@ -41,6 +41,17 @@ int main() {
         std::cout << bst.whatlevelamI(13) << std::endl;  // Second Case
         std::cout << bst.whatlevelamI(10) << std::endl;  // Third Case
         std::cout << bst.whatlevelamI(1) << std::endl;  // Fourth Case
+        
+        // Main Case
+        BST bstMain;
+        bstMain.insertNode(20);
+        bstMain.insertNode(5);
+        bstMain.insertNode(8);
+        bstMain.insertNode(7);
+        bstMain.insertNode(4);
+
+        std::cout << "Preorder: " << std::endl;
+        bstMain.visit(1);
 
     } catch (const std::runtime_error &e) {
         std::cerr << e.what() << std::endl;
