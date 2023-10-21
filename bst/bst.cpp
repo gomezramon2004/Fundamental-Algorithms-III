@@ -208,9 +208,10 @@ int BST::size() {
     return currentLength;
 }
 
-// Visit a node by certain mode
+// Visit a node by certain mode, save the amount of comparisons in a vector
 void BST::visit(int key) {
     if (empty()) throw std::runtime_error("ERROR: BST is empty");
+    comparisonVector.clear();
     switch (key) {
         case 1:
             preorder(root);
@@ -266,6 +267,5 @@ int compare(std::vector<int>&& vectorData) {
         resultado = resultado + vectorData[counter] -1;
         ++counter;
     }
-    vectorData.clear();
     return resultadoTotal;
 }
