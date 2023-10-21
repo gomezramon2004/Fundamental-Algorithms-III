@@ -1,4 +1,4 @@
 #pragma once
 #include "../bst/bst.hpp"
 
-void run();
+int run(std::string fileName);

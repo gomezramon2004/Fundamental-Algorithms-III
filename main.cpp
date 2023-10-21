@@ -1,5 +1,6 @@
 #include "./bst/bst.hpp"
 #include "./testcase/testcase.hpp"
+#include "./interface/interface.hpp"
 #include <iostream>
 #include <string>
 
@@ -30,8 +31,17 @@ int main() {
         bstMain1.visit(4);
         std::cout << "Comparisons: " << compare(bstMain1.getComparisonVector()) << '\n'; // It should be 125
 
-        
+        // Case #1 - input1.txt
+        std::cout << run("input1.txt") << '\n'; // It should be 83
 
+        // Case #2 - input2.txt
+        std::cout << run("input2.txt") << '\n'; // It should be 128
+
+        // Case #3 - input3.txt
+        std::cout << run("input3.txt") << '\n'; // It should be 7018
+
+        // Case #4 - input4.txt
+        std::cout << run("input4.txt") << '\n'; // It should be 196
 
     } catch (const std::runtime_error &e) {
         std::cerr << e.what() << std::endl;
