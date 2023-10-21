@@ -19,5 +19,5 @@ int run(std::string fileName) {
     }
 
     bst.visit(2);
-    return compare(bst.getComparisonList().getHead());
+    return compare(bst);
 }

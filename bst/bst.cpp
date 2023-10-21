@@ -109,8 +109,7 @@ int BST::calculateHeight(NodeBST* currentNode) {
 // Helper function for preorder
 void BST::preorder(NodeBST* currentNode) {
     if (!currentNode) return;
-    comparisonList.insertNode(currentNode->data);
-    std::cout << currentNode->data << " ";
+    trackList.insertNode(currentNode->data);
     preorder(currentNode->left);
     preorder(currentNode->right);
 }
@@ -119,8 +118,7 @@ void BST::preorder(NodeBST* currentNode) {
 void BST::inorder(NodeBST* currentNode) {
     if (!currentNode) return;
     inorder(currentNode->left);
-    comparisonList.insertNode(currentNode->data);
-    std::cout << currentNode->data << " ";
+    trackList.insertNode(currentNode->data);
     inorder(currentNode->right);
 }
 
@@ -129,8 +127,7 @@ void BST::postorder(NodeBST* currentNode) {
     if (!currentNode) return;
     postorder(currentNode->left);
     postorder(currentNode->right);
-    comparisonList.insertNode(currentNode->data);
-    std::cout << currentNode->data << " ";
+    trackList.insertNode(currentNode->data);
 }
 
 // Helper function for level by level
@@ -143,8 +140,7 @@ void BST::levelByLevel(NodeBST* currentNode) {
         for (size_t i = 0; i < n; ++i) {
             NodeBST* temp = q.front();
             q.pop();
-            comparisonList.insertNode(temp->data);
-            std::cout << temp->data << " ";
+            trackList.insertNode(temp->data);
             if (temp->left) q.push(temp->left);
             if (temp->right) q.push(temp->right);
         }
@@ -206,10 +202,15 @@ int BST::size() {
     return currentLength;
 }
 
+// Print track list
+void BST::printTrackList() {
+    trackList.printList();
+}
+
 // Visit a node by certain mode, save the amount of comparisons in a vector
 void BST::visit(int key) {
     if (empty()) throw std::runtime_error("ERROR: BST is empty");
-    comparisonList.clear();
+    trackList.clear();
     switch (key) {
         case 1:
             preorder(root);
@@ -253,12 +254,13 @@ int BST::whatlevelamI(int data) {
 }
 
 // Get comparison list
-LinkedList BST::getComparisonList() {
-    return comparisonList;
+LinkedList BST::getTrackList() {
+    return trackList;
 }
 
 // Check the amount of comparisons from route
-int compare(Node* head) {
+int compare(BST& bst) {
+    Node* head = bst.getTrackList().getHead();
     int total = 0, currentValue = 0;
 
     if (!head || !head->next) throw std::runtime_error("ERROR: List does not have enough elements.");

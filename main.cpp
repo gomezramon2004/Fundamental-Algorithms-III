@@ -1,5 +1,4 @@
 #include "./bst/bst.hpp"
-#include "./testcase/testcase.hpp"
 #include "./interface/interface.hpp"
 #include <iostream>
 #include <string>
@@ -15,21 +14,25 @@ int main() {
         bstMain1.insertNode(7);
         bstMain1.insertNode(4);
 
-        std::cout << "Preorder: " << '\n';
+        std::cout << "\nPreorder: ";
         bstMain1.visit(1);
-        std::cout << "Comparisons: " << compare(bstMain1.getComparisonList().getHead()) << '\n'; // It should be 125
+        bstMain1.printTrackList();
+        std::cout << "Comparisons: " << compare(bstMain1) << '\n'; // It should be 125
 
-        std::cout << "Inorder: " << '\n';
+        std::cout << "\nInorder: ";
         bstMain1.visit(2);
-        std::cout << "Comparisons: " << compare(bstMain1.getComparisonList().getHead()) << '\n'; // It should be 83 <- This is the smallest number of comparisons
+        bstMain1.printTrackList();
+        std::cout << "Comparisons: " << compare(bstMain1) << '\n'; // It should be 83 <- This is the smallest number of comparisons
 
-        std::cout << "Postorder: " << '\n';
+        std::cout << "\nPostorder: ";
         bstMain1.visit(3);
-        std::cout << "Comparisons: " << compare(bstMain1.getComparisonList().getHead()) << '\n'; // It should be 88
+        bstMain1.printTrackList();
+        std::cout << "Comparisons: " << compare(bstMain1) << '\n'; // It should be 88
 
-        std::cout << "Level by Level: " << '\n';
+        std::cout << "\nLevel by Level: ";
         bstMain1.visit(4);
-        std::cout << "Comparisons: " << compare(bstMain1.getComparisonList().getHead()) << '\n'; // It should be 125
+        bstMain1.printTrackList();
+        std::cout << "Comparisons: " << compare(bstMain1) << '\n'; // It should be 125
 
         // Case #1 - input1.txt
         std::cout << run("input1.txt") << '\n'; // It should be 83

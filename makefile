@@ -8,7 +8,6 @@ LNKDIR = linkedList
 
 SRCS = main.cpp \
 		$(BSTDIR)/bst.cpp \
-		$(TSTDIR)/testcase.cpp \
 		$(LNKDIR)/linkedList.cpp \
 		$(UIDIR)/interface.cpp \
 

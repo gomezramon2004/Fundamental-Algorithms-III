@@ -16,7 +16,7 @@ class BST {
     private:
         int currentLength;
         int currentHeight;
-        LinkedList comparisonList;
+        LinkedList trackList;
         NodeBST* root;
         void compareNodes(NodeBST* currentNodeBST, NodeBST* newNodeBST);
         NodeBST* searchNode(int data, NodeBST* currentNodeBST, bool isLevel);
@@ -38,11 +38,12 @@ class BST {
         int top(); 
         bool empty();
         int size();
+        void printTrackList();
         void visit(int key);
         int height();
         void ancestors(int data);
         int whatlevelamI(int data);
-        LinkedList getComparisonList();
+        LinkedList getTrackList();
 };
 
-int compare(Node* head);
+int compare(BST& bst);
