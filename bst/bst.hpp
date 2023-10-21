@@ -1,37 +1,37 @@
 #pragma once
 #include <vector>
+#include "../linkedList/linkedList.hpp"
 
-class Node {
+class NodeBST {
     public:
         int data;
         int level;
-        Node *left;
-        Node *right;
-        Node *prev;
-        Node(int data);
+        NodeBST *left;
+        NodeBST *right;
+        NodeBST *prev;
+        NodeBST(int data);
 };
 
 class BST {
     private:
-        int MAX_LENGTH;
         int currentLength;
         int currentHeight;
-        std::vector<int> comparisonVector;
-        Node* root;
-        void compareNodes(Node* currentNode, Node* newNode);
-        Node* searchNode(int data, Node* currentNode, bool isLevel);
-        void deleteLeaftNode(Node* currentNode);
-        void deleteNodeWithLeftChild(Node* currentNode);
-        void deleteNodeWithRightChild(Node* currentNode);
-        void deleteNodeWithTwoChildren(Node* currentNode);
-        Node* minRight(Node* currentNode);
-        int calculateHeight(Node* currentNode);
-        void preorder(Node* currentNode);
-        void inorder(Node* currentNode);
-        void postorder(Node* currentNode);
-        void levelByLevel(Node* currentNode);
+        LinkedList comparisonList;
+        NodeBST* root;
+        void compareNodes(NodeBST* currentNodeBST, NodeBST* newNodeBST);
+        NodeBST* searchNode(int data, NodeBST* currentNodeBST, bool isLevel);
+        void deleteLeaftNode(NodeBST* currentNodeBST);
+        void deleteNodeWithLeftChild(NodeBST* currentNodeBST);
+        void deleteNodeWithRightChild(NodeBST* currentNodeBST);
+        void deleteNodeWithTwoChildren(NodeBST* currentNodeBST);
+        NodeBST* minRight(NodeBST* currentNodeBST);
+        int calculateHeight(NodeBST* currentNodeBST);
+        void preorder(NodeBST* currentNodeBST);
+        void inorder(NodeBST* currentNodeBST);
+        void postorder(NodeBST* currentNodeBST);
+        void levelByLevel(NodeBST* currentNodeBST);
     public:
-        BST(int LENGTH);
+        BST();
         void insertNode(int data);
         void deleteNode(int data);
         bool search(int data);
@@ -42,7 +42,7 @@ class BST {
         int height();
         void ancestors(int data);
         int whatlevelamI(int data);
-        std::vector<int> getComparisonVector();
+        LinkedList getComparisonList();
 };
 
-int compare(std::vector <int>&& vector);
+int compare(Node* head);

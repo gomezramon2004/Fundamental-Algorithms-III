@@ -4,11 +4,11 @@
 #include <queue>
 #include <vector>
 
-// Constructor of Node
-Node::Node(int data) : data(data), level(0), left(nullptr), right(nullptr), prev(nullptr) {}
+// Constructor of NodeBST
+NodeBST::NodeBST(int data) : data(data), level(0), left(nullptr), right(nullptr), prev(nullptr) {}
 
 // Compare nodes in BST
-void BST::compareNodes(Node* currentNode, Node* newNode) {
+void BST::compareNodes(NodeBST* currentNode, NodeBST* newNode) {
     if (root->data == newNode->data) throw std::runtime_error("ERROR: Node already exists");
 
     if (newNode->data > currentNode->data) {
@@ -31,10 +31,10 @@ void BST::compareNodes(Node* currentNode, Node* newNode) {
 }
 
 // Search node in BST
-Node* BST::searchNode(int data, Node* currentNode, bool isLevel) {
+NodeBST* BST::searchNode(int data, NodeBST* currentNode, bool isLevel) {
     if (!currentNode) {
         if (!isLevel) throw std::runtime_error("ERROR: Node not found");
-        Node* temp = new Node(data);
+        NodeBST* temp = new NodeBST(data);
         temp->level = -1;
         return temp;
     }
@@ -49,7 +49,7 @@ Node* BST::searchNode(int data, Node* currentNode, bool isLevel) {
 }
 
 // Delete leaf node
-void BST::deleteLeaftNode(Node* currentNode) {
+void BST::deleteLeaftNode(NodeBST* currentNode) {
     if (currentNode == root) {
         root = nullptr;
     } else if (currentNode->prev->left == currentNode) {
@@ -61,22 +61,22 @@ void BST::deleteLeaftNode(Node* currentNode) {
 }
 
 // Delete node with left child
-void BST::deleteNodeWithLeftChild(Node* currentNode) {
+void BST::deleteNodeWithLeftChild(NodeBST* currentNode) {
     currentNode->left->prev = currentNode->prev;
     currentNode->prev->left == currentNode ? currentNode->prev->left = currentNode->left : currentNode->prev->right = currentNode->left;
     delete currentNode;
 }
 
 // Delete node with right child
-void BST::deleteNodeWithRightChild(Node* currentNode) {
+void BST::deleteNodeWithRightChild(NodeBST* currentNode) {
     currentNode->right->prev = currentNode->prev;
     currentNode->prev->left == currentNode ? currentNode->prev->left = currentNode->right : currentNode->prev->right = currentNode->right;
     delete currentNode;
 }
 
 // Delete node with two children
-void BST::deleteNodeWithTwoChildren(Node* currentNode) {
-    Node* minRightNode = minRight(currentNode);
+void BST::deleteNodeWithTwoChildren(NodeBST* currentNode) {
+    NodeBST* minRightNode = minRight(currentNode);
     currentNode->data = minRightNode->data;
     if (minRightNode->prev->left == minRightNode) {
         minRightNode->prev->left = minRightNode->right;
@@ -90,8 +90,8 @@ void BST::deleteNodeWithTwoChildren(Node* currentNode) {
 }
 
 // Calculate min right node
-Node* BST::minRight(Node* currentNode) {
-    Node* temp = currentNode->right;
+NodeBST* BST::minRight(NodeBST* currentNode) {
+    NodeBST* temp = currentNode->right;
     while (temp->left) {
         temp = temp->left;
     }
@@ -99,7 +99,7 @@ Node* BST::minRight(Node* currentNode) {
 }
 
 // Calculate height of BST
-int BST::calculateHeight(Node* currentNode) {
+int BST::calculateHeight(NodeBST* currentNode) {
     if (!currentNode) return 0;
     int leftHeight = calculateHeight(currentNode->left);
     int rightHeight = calculateHeight(currentNode->right);
@@ -107,43 +107,43 @@ int BST::calculateHeight(Node* currentNode) {
 }
 
 // Helper function for preorder
-void BST::preorder(Node* currentNode) {
+void BST::preorder(NodeBST* currentNode) {
     if (!currentNode) return;
-    comparisonVector.push_back(currentNode->data);
+    comparisonList.insertNode(currentNode->data);
     std::cout << currentNode->data << " ";
     preorder(currentNode->left);
     preorder(currentNode->right);
 }
 
 // Helper function for inorder
-void BST::inorder(Node* currentNode) {
+void BST::inorder(NodeBST* currentNode) {
     if (!currentNode) return;
     inorder(currentNode->left);
-    comparisonVector.push_back(currentNode->data);
+    comparisonList.insertNode(currentNode->data);
     std::cout << currentNode->data << " ";
     inorder(currentNode->right);
 }
 
 // Helper function for postorder
-void BST::postorder(Node* currentNode) {
+void BST::postorder(NodeBST* currentNode) {
     if (!currentNode) return;
     postorder(currentNode->left);
     postorder(currentNode->right);
-    comparisonVector.push_back(currentNode->data);
+    comparisonList.insertNode(currentNode->data);
     std::cout << currentNode->data << " ";
 }
 
 // Helper function for level by level
-void BST::levelByLevel(Node* currentNode) {
+void BST::levelByLevel(NodeBST* currentNode) {
     if (!currentNode) return;
-    std::queue<Node*> q;
+    std::queue<NodeBST*> q;
     q.push(currentNode);
     while (!q.empty()) {
         int n = q.size();
         for (size_t i = 0; i < n; ++i) {
-            Node* temp = q.front();
+            NodeBST* temp = q.front();
             q.pop();
-            comparisonVector.push_back(temp->data);
+            comparisonList.insertNode(temp->data);
             std::cout << temp->data << " ";
             if (temp->left) q.push(temp->left);
             if (temp->right) q.push(temp->right);
@@ -153,13 +153,11 @@ void BST::levelByLevel(Node* currentNode) {
 }
 
 // Constructor of BST
-BST::BST(int LENGTH) : MAX_LENGTH(LENGTH), currentLength(0), root(nullptr) {}
+BST::BST() : currentLength(0), root(nullptr) {}
 
 // Insert node to BST
 void BST::insertNode(int data) {  
-    Node* newNode = new Node(data);      
-
-    if (currentLength == MAX_LENGTH) throw std::runtime_error("ERROR: BST is full");
+    NodeBST* newNode = new NodeBST(data);      
 
     if (empty()) {
         root = newNode;
@@ -174,7 +172,7 @@ void BST::insertNode(int data) {
 void BST::deleteNode(int data) {      
     if (empty()) throw std::runtime_error("ERROR: BST is empty");
 
-    Node* currentNode = searchNode(data, root, false);
+    NodeBST* currentNode = searchNode(data, root, false);
 
     if (!currentNode->left && !currentNode->right) {                // Delete a leaf node           
         deleteLeaftNode(currentNode);
@@ -211,7 +209,7 @@ int BST::size() {
 // Visit a node by certain mode, save the amount of comparisons in a vector
 void BST::visit(int key) {
     if (empty()) throw std::runtime_error("ERROR: BST is empty");
-    comparisonVector.clear();
+    comparisonList.clear();
     switch (key) {
         case 1:
             preorder(root);
@@ -239,7 +237,7 @@ int BST::height() {
 
 // Get ancestors of a node
 void BST::ancestors(int data) {
-    Node* currentNode = searchNode(data, root, false);
+    NodeBST* currentNode = searchNode(data, root, false);
     std::cout << currentNode->data;
     while (currentNode->prev) {
         std::cout << " <- " << currentNode->prev->data;
@@ -250,22 +248,31 @@ void BST::ancestors(int data) {
 
 // Get the level of a node
 int BST::whatlevelamI(int data) {
-    Node* currentNode = searchNode(data, root, true);
+    NodeBST* currentNode = searchNode(data, root, true);
     return currentNode->level;
 }
 
-// Get comparison vector
-std::vector<int> BST::getComparisonVector() {
-    return comparisonVector;
+// Get comparison list
+LinkedList BST::getComparisonList() {
+    return comparisonList;
 }
 
-int compare(std::vector<int>&& vectorData) {
-    int resultadoTotal = 0, resultado, counter = 2;
-    resultado = vectorData[0] + vectorData[1] - 1;
-    while (counter<=vectorData.size()) {
-        resultadoTotal = resultadoTotal + resultado;
-        resultado = resultado + vectorData[counter] -1;
-        ++counter;
+// Check the amount of comparisons from route
+int compare(Node* head) {
+    int total = 0, currentValue = 0;
+
+    if (!head || !head->next) throw std::runtime_error("ERROR: List does not have enough elements.");
+
+    Node* current = head;
+    total += current->data + current->next->data - 1;
+    currentValue = total;
+    current = current->next->next;
+
+    while (current) {
+        currentValue = currentValue + current->data - 1;
+        total += currentValue;
+        current = current->next;
     }
-    return resultadoTotal;
+
+    return total;
 }
