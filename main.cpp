@@ -1,4 +1,5 @@
 #include "./bst/bst.hpp"
+#include "./testcase/testcase.hpp"
 #include "./interface/interface.hpp"
 #include <iostream>
 #include <string>
